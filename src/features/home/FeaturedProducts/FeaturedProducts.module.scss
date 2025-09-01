@@ -1,0 +1,79 @@
+@use "../../../styles/variables" as *;
+
+.featured {
+  padding: 40px 0;
+  background: #fff;
+}
+
+.title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.15s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+.thumb {
+  display: block;
+  aspect-ratio: 1/1;
+  background: #f9f9f9;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.info {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.price {
+  font-weight: 500;
+  color: var(--brand-red);
+}
+
+.cta {
+  margin-top: 6px;
+  background: var(--brand-red);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:hover {
+    /* ✅ ici Sass calcule une vraie couleur plus foncée */
+    background: darken($brand-red, 10%);
+  }
+}

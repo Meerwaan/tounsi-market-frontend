@@ -1,20 +1,22 @@
+/* Variables Sass (pour darken/lighten) */
+$brand-red: #E30613;
+$brand-white: #ffffff;
+$brand-black: #111111;
+
+/* Variables CSS (runtime) */
 :root {
-  /* Couleurs principales */
   --brand-red: #E30613;
   --brand-white: #ffffff;
   --brand-black: #111111;
 
-  /* Neutres */
   --gray-100: #f8f9fa;
   --gray-300: #dee2e6;
   --gray-600: #6c757d;
   --gray-900: #212529;
 
-  /* Typo */
   --font-body: 'Roboto', sans-serif;
   --font-heading: 'Poppins', sans-serif;
 
-  /* Radius & ombres */
   --radius-md: 8px;
   --radius-lg: 16px;
   --shadow-card: 0 6px 16px rgba(0, 0, 0, 0.06);

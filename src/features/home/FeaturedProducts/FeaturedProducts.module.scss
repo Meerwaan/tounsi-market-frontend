@@ -1,79 +1,82 @@
-@use "../../../styles/variables" as *;
+@use "@/styles/variables" as *;
 
 .featured {
-  padding: 40px 0;
+  padding: 20px 0;
   background: #fff;
 }
 
 .title {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 24px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 16px;
 }
 
+/* Grille responsive plus compacte */
 .grid {
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 520px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
 }
 
+/* Carte plus légère */
 .card {
   background: #fff;
-  border-radius: 12px;
+  border-radius: 10px;
   box-shadow: var(--shadow-card);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.15s ease;
+  transition: transform .15s ease;
+  padding: 10px;
 
-  &:hover {
-    transform: translateY(-3px);
-  }
+  &:hover { transform: translateY(-3px); }
 }
 
+/* Vignette en 4:3, centrée, sans crop agressif */
 .thumb {
-  display: block;
-  aspect-ratio: 1/1;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
   background: #f9f9f9;
+  border-radius: 8px;
 
   img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
   }
 }
 
 .info {
-  padding: 12px;
+  padding: 10px 6px 0;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.name {
-  font-weight: 600;
-  font-size: 1rem;
-}
+.name { font-weight: 600; font-size: .95rem; }
+.price { font-weight: 600; color: var(--brand-red); }
 
-.price {
-  font-weight: 500;
-  color: var(--brand-red);
-}
-
+/* CTA un peu plus discret sur mobile */
 .cta {
   margin-top: 6px;
   background: var(--brand-red);
   color: #fff;
   border: none;
   border-radius: 8px;
-  padding: 8px 12px;
+  padding: 8px 10px;
   font-weight: 600;
+  font-size: .95rem;
+  width: 100%;
   cursor: pointer;
-  transition: background 0.15s ease;
-
-  &:hover {
-    /* ✅ ici Sass calcule une vraie couleur plus foncée */
-    background: darken($brand-red, 10%);
-  }
+  transition: background .15s ease;
 }

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "harissa",
+    "name": "Harissa artisanale",
+    "slug": "harissa-artisanale",
+    "priceCents": 359,
+    "currency": "EUR",
+    "images": ["/images/harissa.jpg"],
+    "categoryId": "spices",
+    "stock": 42,
+    "description": "Harissa tunisienne au piment fort."
+  },
+  {
+    "id": "chamia",
+    "name": "Chamia",
+    "slug": "chamia",
+    "priceCents": 550,
+    "currency": "EUR",
+    "images": ["/images/chamia.jpg"],
+    "categoryId": "biscuits",
+    "stock": 30,
+    "description": "Pâtisserie traditionnelle aux amandes."
+  },
+  {
+    "id": "deglet",
+    "name": "Deglet Nour",
+    "slug": "deglet-nour",
+    "priceCents": 560,
+    "currency": "EUR",
+    "images": ["/images/deglet.jpg"],
+    "categoryId": "trad",
+    "stock": 50,
+    "description": "Dattes tunisiennes de qualité."
+  },
+  {
+    "id": "boga",
+    "name": "Boga limonade",
+    "slug": "boga-limonade",
+    "priceCents": 150,
+    "currency": "EUR",
+    "images": ["/images/boga.jpg"],
+    "categoryId": "drink",
+    "stock": 120,
+    "description": "Soda tunisien emblématique."
+  }
+]

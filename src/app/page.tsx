@@ -1,9 +1,13 @@
-// src/app/page.tsx
+import Hero from "../features/home/sections/Hero";
+import CategoriesStrip from "../features/home/CategoriesStrip/CategoriesStrip";
+
+
 export default function HomePage() {
     return (
-        <section style={{ padding: "2rem 0" }}>
-            <h1>Tounsi-Market</h1>
-            <p>Le goût de la Tunisie, livré chez vous 🇹🇳</p>
-        </section>
+        <>
+            <Hero />
+            <CategoriesStrip />
+            {/* Produits phares viendront après */}
+        </>
     );
 }

@@ -1,0 +1,6 @@
+[
+  { "id": "drink",   "name": "Boissons tunisiennes", "slug": "boissons" },
+  { "id": "biscuits","name": "Gâteaux & biscuits",    "slug": "gateaux" },
+  { "id": "spices",  "name": "Épices & condiments",   "slug": "epices" },
+  { "id": "trad",    "name": "Produits traditionnels","slug": "traditionnels" }
+]

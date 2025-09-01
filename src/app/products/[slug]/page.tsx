@@ -1,3 +1,9 @@
+// src/app/products/[slug]/page.tsx
+import { notFound } from "next/navigation";
+import { getProductBySlug } from "@/services/products.service";
+import ProductView from "@/features/product/ProductView/ProductView";
+import Container from "@/components/layout/Container/Container";
+
 type Params = { slug: string };
 
 export default async function ProductPage({
@@ -5,12 +11,14 @@ export default async function ProductPage({
                                           }: {
     params: Promise<Params>;
 }) {
-    const { slug } = await params;
+    const { slug } = await params; // Next 15 : params asynchrone
+    const product = await getProductBySlug(slug);
+
+    if (!product) return notFound();
 
     return (
-        <section style={{ padding: "2rem" }}>
-            <h1>Produit : {slug}</h1>
-            <p>Page dynamique générée à partir du slug.</p>
-        </section>
+        <Container>
+            <ProductView product={product} />
+        </Container>
     );
 }

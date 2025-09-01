@@ -1,0 +1,97 @@
+.catalogue {
+  padding: 24px 0;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.filters {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid #e9e9e9;
+    background: #fff;
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+
+    &.active {
+      border: 2px solid var(--brand-red);
+      background: #fff0f0;
+      color: var(--brand-red);
+    }
+  }
+}
+
+.search {
+  display: flex;
+  gap: 8px;
+
+  input {
+    flex: 1;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    padding: 0 12px;
+  }
+
+  button {
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background: var(--brand-red);
+    color: #fff;
+    font-weight: 700;
+    padding: 0 14px;
+    cursor: pointer;
+  }
+}
+
+/* ✅ Grille qui ne s'étire plus en plein écran quand il reste 1 carte */
+.grid {
+  /* bornes de largeur d'une carte */
+  --card-min: 220px;
+  --card-max: 280px;
+
+  display: grid;
+  gap: 20px;
+
+  /* chaque colonne fait entre min et max ; avec auto-fit,
+     les colonnes "vides" se replient -> pas de carte géante */
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-min), var(--card-max)));
+  justify-content: start; /* mets 'center' si tu préfères centrer quand il n'y en a qu'une */
+
+  /* un peu plus large sur écran moyen/grand */
+  @media (min-width: 900px) {
+    --card-max: 300px;
+  }
+  @media (min-width: 1200px) {
+    --card-max: 320px;
+  }
+
+  /* sur petits écrans, autorise la carte à prendre toute la largeur dispo */
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+
+.empty {
+  margin-top: 16px;
+  color: #666;
+}

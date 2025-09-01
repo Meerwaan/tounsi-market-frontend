@@ -3,7 +3,7 @@
 import Link from "next/link";
 import styles from "./Navbar.module.scss";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const links = [
     { href: "/", label: "Accueil" },
@@ -17,17 +17,23 @@ export default function Navbar() {
     const pathname = usePathname();
     const [open, setOpen] = useState(false);
 
+    // Empêche le scroll de la page quand le menu mobile est ouvert
+    useEffect(() => {
+        if (open) document.body.classList.add("no-scroll");
+        else document.body.classList.remove("no-scroll");
+        return () => document.body.classList.remove("no-scroll");
+    }, [open]);
+
     return (
         <header className={styles.navbar}>
             <div className={styles.inner}>
-                {/* Logo typographique simple */}
                 <Link href="/" className={styles.logo} aria-label="Tounsi-Market, retour à l’accueil">
                     <span className={styles.logo__left}>Tounsi</span>
                     <span className={styles.logo__dash}>-</span>
                     <span className={styles.logo__right}>Market</span>
                 </Link>
 
-                {/* Liens desktop */}
+                {/* Desktop */}
                 <nav className={styles.nav} aria-label="Navigation principale">
                     {links.map((l) => (
                         <Link
@@ -40,25 +46,29 @@ export default function Navbar() {
                     ))}
                 </nav>
 
-                {/* Actions à droite */}
+                {/* Actions */}
                 <div className={styles.actions}>
                     <Link className={styles.icon} href="/search" aria-label="Rechercher">🔍</Link>
                     <Link className={styles.icon} href="/cart" aria-label="Panier">🛒</Link>
-
-                    {/* Burger mobile */}
                     <button
                         className={styles.burger}
-                        aria-label="Ouvrir le menu"
+                        aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
                         aria-expanded={open}
-                        onClick={() => setOpen((v) => !v)}
+                        aria-controls="mobile-menu"
+                        onClick={() => setOpen(v => !v)}
                     >
                         ☰
                     </button>
                 </div>
             </div>
 
-            {/* Menu mobile */}
-            <div className={`${styles.mobile} ${open ? styles["mobile--open"] : ""}`}>
+            {/* Mobile overlay */}
+            <div
+                id="mobile-menu"
+                className={`${styles.mobile} ${open ? styles["mobile--open"] : ""}`}
+                role="dialog"
+                aria-modal="true"
+            >
                 {links.map((l) => (
                     <Link
                         key={l.href}
@@ -70,8 +80,8 @@ export default function Navbar() {
                     </Link>
                 ))}
                 <div className={styles.mobileActions}>
-                    <Link href="/search">Rechercher</Link>
-                    <Link href="/cart">Panier</Link>
+                    <Link href="/search" onClick={() => setOpen(false)}>Rechercher</Link>
+                    <Link href="/cart" onClick={() => setOpen(false)}>Panier</Link>
                 </div>
             </div>
         </header>

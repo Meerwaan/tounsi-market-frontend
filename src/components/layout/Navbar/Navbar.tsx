@@ -4,6 +4,7 @@ import Link from "next/link";
 import styles from "./Navbar.module.scss";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useCart } from "@/features/cart/CartContext";
 
 const links = [
     { href: "/", label: "Accueil" },
@@ -16,6 +17,8 @@ const links = [
 export default function Navbar() {
     const pathname = usePathname();
     const [open, setOpen] = useState(false);
+    const { totalQuantity } = useCart();
+    const hasItems = totalQuantity > 0;
 
     // Empêche le scroll de la page quand le menu mobile est ouvert
     useEffect(() => {
@@ -49,7 +52,11 @@ export default function Navbar() {
                 {/* Actions */}
                 <div className={styles.actions}>
                     <Link className={styles.icon} href="/search" aria-label="Rechercher">🔍</Link>
-                    <Link className={styles.icon} href="/cart" aria-label="Panier">🛒</Link>
+                    <Link className={styles.icon} href="/cart" aria-label="Panier">
+                        <span aria-hidden>🛒</span>
+                        {hasItems && <span className={styles.badge}>{totalQuantity}</span>}
+                        <span className="sr-only">Panier ({totalQuantity})</span>
+                    </Link>
                     <button
                         className={styles.burger}
                         aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
@@ -81,7 +88,7 @@ export default function Navbar() {
                 ))}
                 <div className={styles.mobileActions}>
                     <Link href="/search" onClick={() => setOpen(false)}>Rechercher</Link>
-                    <Link href="/cart" onClick={() => setOpen(false)}>Panier</Link>
+                    <Link href="/cart" onClick={() => setOpen(false)}>Panier ({totalQuantity})</Link>
                 </div>
             </div>
         </header>
